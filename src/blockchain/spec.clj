@@ -1,4 +1,4 @@
-(ns blockchain.core
+(ns blockchain.spec
   (:require [clojure.spec.alpha :as s]))
 
 (s/def ::sender string?)

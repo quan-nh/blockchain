@@ -1,11 +1,16 @@
 (ns blockchain.db
   (:require [digest]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [clojure.spec.alpha :as s]))
 
 (def ^:private chain (atom []))
 (def ^:private current-transactions (atom []))
 
 (defn get-chain [] @chain)
+
+(s/fdef add-transaction!
+        :args (s/cat :transaction :blockchain.spec/transaction)
+        :ret integer?)
 
 (defn add-transaction! [transaction]
   (swap! current-transactions conj transaction)
